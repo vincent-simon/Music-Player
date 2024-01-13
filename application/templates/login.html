@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Music Streaming webapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+    <link rel="icon" type="image/x-icon"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Apple_Music_icon.svg/1200px-Apple_Music_icon.svg.png">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+</head>
+
+<body>
+    {% block login_signup %}
+    {% if alert %}
+    <script>
+        alert("{{ alert }}")
+    </script>
+    {% endif %}
+
+    <div class="container">
+        <div class="backbox">
+            <div class="loginMsg">
+                <div class="textcontent">
+                    <p class="title">Don't have an account?</p>
+                    <p>Sign up here</p>
+                    <button id="switch1">Sign Up</button>
+                </div>
+            </div>
+            <div class="signupMsg visibility">
+                <div class="textcontent">
+                    <p class="title">Have an account?</p>
+                    <p>Log in to listen beautiful rhythms.</p>
+                    <button id="switch2">LOG IN</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="frontbox">
+            <div class="login">
+                <h2>LOG IN</h2>
+
+                <form action="{{ url_for('login') }}" method="POST">
+
+                    <div class="inputbox">
+                        <input type="text" name="email" placeholder="EMAIL" required>
+                        <input type="password" name="password" placeholder="PASSWORD" required>
+                    </div>
+                    <button type="submit" style="bottom:90px">LOG IN</button>
+                </form>
+
+            </div>
+
+            <div class="signup hide">
+                <h2>SIGN UP</h2>
+                <form action="/signup" method="POST">
+
+                    <div class="inputbox">
+                        <input type="text" name="name" placeholder="FULLNAME" required>
+                        <input type="text" name="email" placeholder="EMAIL" required>
+                        <input type="password" name="password" placeholder="PASSWORD" required>
+                    </div>
+                    <button type="submit">SIGN UP</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    {% endblock login_signup %}
+
+    <script>
+        var $loginMsg = $('.loginMsg'),
+            $login = $('.login'),
+            $signupMsg = $('.signupMsg'),
+            $signup = $('.signup'),
+            $frontbox = $('.frontbox');
+
+        $('#switch1').on('click', function () {
+            $loginMsg.toggleClass("visibility");
+            $frontbox.addClass("moving");
+            $signupMsg.toggleClass("visibility");
+
+            $signup.toggleClass('hide');
+            $login.toggleClass('hide');
+        })
+
+        $('#switch2').on('click', function () {
+            $loginMsg.toggleClass("visibility");
+            $frontbox.removeClass("moving");
+            $signupMsg.toggleClass("visibility");
+
+            $signup.toggleClass('hide');
+            $login.toggleClass('hide');
+        })
+
+        /* setTimeout(function () {
+             $('#switch1').click()
+         }, 1000)
+ 
+         setTimeout(function () {
+             $('#switch2').click()
+         }, 3000) */
+    </script>
+
+</body>
+
+</html>

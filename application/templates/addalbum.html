@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block profile %}
+{% block search %}
+{% endblock %}
+<a class="lofi" href="/logout">Logout</a>
+{% endblock profile %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+{% block sidenav %}
+
+{% endblock sidenav %}
+
+{% block login_signup %}
+{% if alert %}
+<script>
+  alert("{{ alert }}")
+</script>
+{% endif %}
+<div class="container">
+  <div class="frontbox" style="margin-right: 50px; height:300px; width:400px !important;">
+    <div class="login">
+      <h2>Add Album</h2>
+      <form action="/addalbum" method="POST" enctype="multipart/form-data">
+        <div class="inputbox">
+          <input type="text" class="form-control" placeholder="Name of Album" id="category" name="name" maxlength="40"
+            required>
+          <input type="text" class="form-control" placeholder="Singer Name" id="singer" name="singer" maxlength="40"
+            required>
+          <input type="text" class="form-control" placeholder="Genre" id="genre" name="genre" maxlength="40" required>
+          <button type="submit" style="bottom: 20px;">submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock login_signup %}
+{% endblock body %}
+{% block footer %}
+{% endblock footer %}

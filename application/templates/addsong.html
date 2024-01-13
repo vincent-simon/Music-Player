@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block profile %}
+{% block search %}
+{% endblock %}
+<a class="lofi" href="/logout">Logout</a>
+{% endblock profile %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+{% block sidenav %}
+
+{% endblock sidenav %}
+
+{% block login_signup %}
+{% if alert %}
+<script>
+    alert("{{ alert }}")
+</script>
+{% endif %}
+<div class="container">
+    <div class="frontbox" style="margin-right: 50px; height:450px; width:400px !important;">
+        <div class="login">
+            <h2>Add Song</h2>
+            <form action="/addsong" method="POST" enctype="multipart/form-data">
+                <div class="inputbox">
+                    <div class="left">
+                        <input type="text" name="name" placeholder="Song Name" class="form-control" id="name" required>
+                    </div>
+
+                    <div class="right">
+                        <input type="text" name="singer" placeholder="Singer" class="form-control" id="singer" required>
+                    </div>
+                    <div class="left">
+                        <input type="text" name="genre" placeholder="Genre" class="form-control" id="genre" required>
+                    </div>
+
+                    <div class="right">
+                        <input type="date" name="date_created" class="form-control" id="date-created" required>
+                    </div>
+
+                    <textarea name="lyrics" placeholder="Lyrics" class="form-control" id="lyrics" required></textarea>
+
+                    <input type="text" name="album_id" value="{{album_id}}" style="display: none;">
+
+
+                    <div class="left">
+                        <label for="song-cover">Upload song cover</label>
+                        <input type="file" name="image" id="song-cover" required>
+                    </div>
+                    <div class="left">
+                        <label for="song">Upload the song</label>
+                        <input type="file" name="song" id="song" required>
+                    </div>
+                </div>
+                <button type="submit" style="bottom: 50px;">submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock login_signup %}
+
+
+
+{% endblock body %}
+{% block footer %}
+{% endblock footer %}
